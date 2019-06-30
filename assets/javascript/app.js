@@ -25,7 +25,8 @@ $(".button").on("click", function(event) {
     destination = $("#destination").val().trim();
     firstTrain = $("#first-train").val().trim();
     frequency = $("#frequency").val().trim();
-
+    
+    // Push values to database.
     database.ref().push({
         trainName: trainName,
         destination: destination,
@@ -33,4 +34,17 @@ $(".button").on("click", function(event) {
         dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
 
+});
+
+database.ref().on("child_added", function(childSnapshot) {
+    console.log(childSnapshot.val());
+
+    var newRow = $("<tr>").append(
+        $("<td>").text(trainName),
+        $("<td>").text(destination),
+        $("<td>").text(firstTrain),
+        $("<td>").text(frequency),
+        // $("<td>").text(0),
+        )
+        $("tbody").append(newRow);
 });
