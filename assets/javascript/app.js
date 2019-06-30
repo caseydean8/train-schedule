@@ -26,4 +26,11 @@ $(".button").on("click", function(event) {
     firstTrain = $("#first-train").val().trim();
     frequency = $("#frequency").val().trim();
 
-})
+    database.ref().push({
+        trainName: trainName,
+        destination: destination,
+        firstTrain: firstTrain,
+        dateAdded: firebase.database.ServerValue.TIMESTAMP
+    });
+
+});
