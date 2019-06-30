@@ -16,6 +16,7 @@
 
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Cinzel&display=swap" rel="stylesheet"> -->
   <link href="https://fonts.googleapis.com/css?family=Russo+One&display=swap" rel="stylesheet">
 
   <!-- CSS
@@ -37,63 +38,59 @@
   <div class="container">
     <div class="row">
       <div id="header" style="margin-top: 10%">
-        <h1>TrainScendant</h1>
+        <h1>TrainScend</h1>
       </div>
     </div>
     <h5 class="docs-header">Train Schedule</h5>
     <table class="u-full-width">
-        <thead>
-          <tr>
-            <th>Train</th>
-            <th>Destination</th>
-            <th>Frequency (min)</th>
-            <th>Next Arrival</th>
-            <th>Minutes Away</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Trenton Express</td>
-            <td>Trenton</td>
-            <td>25</td>
-            <td>05:35</td>
-            <td>10</td>
+      <thead>
+        <tr>
+          <th>Train</th>
+          <th>Destination</th>
+          <th>Frequency (min)</th>
+          <th>Next Arrival</th>
+          <th>Minutes Away</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Trenton Express</td>
+          <td>Trenton</td>
+          <td>25</td>
+          <td>05:35</td>
+          <td>10</td>
 
-          </tr>
-          <tr>
-            <td>Oregon Trail</td>
-            <td>Salem Oregon</td>
-            <td>3600</td>
-            <td>01:39</td>
-            <td>1154</td>
-          </tr>
-        </tbody>
-      </table>
+        </tr>
+        <tr>
+          <td>Oregon Trail</td>
+          <td>Salem Oregon</td>
+          <td>3600</td>
+          <td>01:39</td>
+          <td>1154</td>
+        </tr>
+      </tbody>
+    </table>
     <h5 class="docs-header">Add a Train</h5>
     <div class="row">
       <div class="four columns">
         <form>
           <label for="">Train Name</label>
-          <input class="u-full-width" type="text" placeholder="" id=""><label
-            for="">Destination</label>
-          <input class="u-full-width" type="text" placeholder="" id=""><label
-            for="">First Train Time</label>
-          <input class="u-full-width" type="text" placeholder="" id=""><label
-            for="">Frequency (min.)</label>
-          <input class="u-full-width" type="text" placeholder="" id="">
-          <!-- <label class="example-send-yourself-copy">
-            <input type="checkbox">
-            <span class="label-body">Send a copy to yourself</span>
-          </label> -->
+          <input class="u-full-width" type="text" id="train-name">
+          <label for="">Destination</label>
+          <input class="u-full-width" type="text" id="destination">
+          <label for="">First Train Time</label>
+          <input class="u-full-width" type="text" id="first-train">
+          <label for="">Frequency (min.)</label>
+          <input class="u-full-width" type="text" id="frequency">
           <input class="button" type="submit" value="Submit">
         </form>
-
-        <!-- Always wrap checkbox and radio inputs in a label and use a <span class="label-body"> inside of it -->
-
         <!-- Note: The class .u-full-width is just a utility class shorthand for width: 100% -->
       </div>
     </div>
   </div>
+  <!-- Firebase References -->
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 
   <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
