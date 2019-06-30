@@ -12,39 +12,54 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
-var trainName = "";
-var destination = "";
-var firstTrain = "";
-var frequency = "";
 
 $(".button").on("click", function(event) {
     event.preventDefault();
 
     // Get values from form input.
-    trainName = $("#train-name").val().trim();
-    destination = $("#destination").val().trim();
-    firstTrain = $("#first-train").val().trim();
-    frequency = $("#frequency").val().trim();
+    var trainName = $("#train-name").val().trim();
+    var destination = $("#destination").val().trim();
+    var firstTrain = $("#first-train").val().trim();
+    var frequency = $("#frequency").val().trim();
     
-    // Push values to database.
-    database.ref().push({
+    // Create a temporary object to hold train data
+    var newTrain = {
         trainName: trainName,
         destination: destination,
         firstTrain: firstTrain,
-        dateAdded: firebase.database.ServerValue.TIMESTAMP
-    });
+        frequency: frequency,
+        dateAdded: moment().format("HH:mm A")
+    };
+    
+    database.ref().push(newTrain);
 
 });
 
 database.ref().on("child_added", function(childSnapshot) {
-    console.log(childSnapshot.val());
+    var trainNameDisplay = childSnapshot.val().trainName;
+    var destinationDisplay = childSnapshot.val().destination;
+    var frequencyDisplay = childSnapshot.val().frequency;
+    var firstTrainTime = childSnapshot.val().firstTrain;
+    var timestamp = childSnapshot.val().dateAdded;
+    
+    var firstTrainConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years");
+
+    var currentTime = moment().format("HH:mm");
+
+    var timeDiff = moment().diff(moment(firstTrainConverted), "minutes");
+    
+    var timeDiffRemainder = timeDiff % frequencyDisplay;
+
+    var minutesTilTrain = frequencyDisplay - timeDiffRemainder;
+
+    var nextArrival = moment().add(minutesTilTrain, "minutes").format("HH:mm");
 
     var newRow = $("<tr>").append(
-        $("<td>").text(trainName),
-        $("<td>").text(destination),
-        $("<td>").text(firstTrain),
-        $("<td>").text(frequency),
-        // $("<td>").text(0),
+        $("<td>").text(trainNameDisplay),
+        $("<td>").text(destinationDisplay),
+        $("<td>").text(frequencyDisplay),
+        $("<td>").text(nextArrival),
+        $("<td>").text(minutesTilTrain),
         )
         $("tbody").append(newRow);
 });

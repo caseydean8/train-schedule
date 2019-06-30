@@ -13,13 +13,13 @@
     opacity: 0.3;
 } 
 
-tbody {
+/* tbody {
     background-color: white;
-}
+} */
 
-td:first-child {
+/* td:first-child {
     padding-left: 8px;
-}
+} */
 
 h5 {
     margin-bottom: .5rem;
