@@ -16,7 +16,7 @@ var database = firebase.database();
 $(".button").on("click", function(event) {
     event.preventDefault();
 
-    // Get values from form input.
+    // collect user form inputs.
     var trainName = $("#train-name").val().trim();
     var destination = $("#destination").val().trim();
     var firstTrain = $("#first-train").val().trim();
@@ -30,8 +30,13 @@ $(".button").on("click", function(event) {
         frequency: frequency,
         dateAdded: moment().format("HH:mm A")
     };
+
+    // Clear form inputs.
+    $("input").val("");
     
+    // Push data to firebase.
     database.ref().push(newTrain);
+    
 
 });
 
@@ -40,11 +45,8 @@ database.ref().on("child_added", function(childSnapshot) {
     var destinationDisplay = childSnapshot.val().destination;
     var frequencyDisplay = childSnapshot.val().frequency;
     var firstTrainTime = childSnapshot.val().firstTrain;
-    var timestamp = childSnapshot.val().dateAdded;
     
     var firstTrainConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years");
-
-    var currentTime = moment().format("HH:mm");
 
     var timeDiff = moment().diff(moment(firstTrainConverted), "minutes");
     
