@@ -12,7 +12,7 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
-
+// Collect user input to send to firebase
 $(".button").on("click", function(event) {
     event.preventDefault();
 
@@ -32,12 +32,10 @@ $(".button").on("click", function(event) {
     };
 
     // Clear form inputs.
-    $("input").val("");
+    $(".clear").val("");
     
     // Push data to firebase.
     database.ref().push(newTrain);
-    
-
 });
 
 database.ref().on("child_added", function(childSnapshot) {
