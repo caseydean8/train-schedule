@@ -13,13 +13,9 @@
     opacity: 0.3;
 } 
 
-/* tbody {
-    background-color: white;
-} */
-
-/* td:first-child {
-    padding-left: 8px;
-} */
+#header {
+    font-family: 'Abel', sans-serif;
+}
 
 h5 {
     margin-bottom: .5rem;
